@@ -3,4 +3,7 @@
     <string name="save">Save</string>
     <string name="hello">Hello!</string>
     <string name="yes">Yes</string>
+    <string name="textview">No elements</string>
+    <string name="savenote">Save</string>
+    <string name="list_of_notes">List of notes</string>
 </resources>
