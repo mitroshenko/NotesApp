@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mitroshenko.mynotes.R
 
-class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter<MyAdapter.MyHolder>() {
+class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter <MyAdapter.MyHolder>() {
     var listArray = listMain
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvTitle = itemView.findViewById<TextView>(R.id.edTitle)
+        var tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
         fun setData(title: String){
             tvTitle.text = title
 

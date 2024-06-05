@@ -43,8 +43,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/rcViev"
-        app:layout_constraintTop_toTopOf="@+id/rcViev" />
+        app:layout_constraintStart_toStartOf="@+id/rcView"
+        app:layout_constraintTop_toTopOf="@+id/rcView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbNew"
@@ -55,8 +55,8 @@
         android:clickable="true"
         android:onClick="onClickNew"
         app:backgroundTint="@color/all_btm"
-        app:layout_constraintBottom_toBottomOf="@+id/rcViev"
-        app:layout_constraintEnd_toEndOf="@+id/rcViev"
+        app:layout_constraintBottom_toBottomOf="@+id/rcView"
+        app:layout_constraintEnd_toEndOf="@+id/rcView"
         app:srcCompat="@drawable/ic_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

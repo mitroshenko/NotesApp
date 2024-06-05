@@ -25,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         init()
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManager.closeDb()
+    }
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
@@ -33,14 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickNew(view: View) {
-        val i = Intent(this,EditActivity::class.java)
+        val i = Intent(this, EditActivity::class.java)
         startActivity(i)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        myDbManager.closeDb()
-    }
+
     fun init(){
         rcView.layoutManager = LinearLayoutManager(this)
         rcView.adapter = myAdapter
