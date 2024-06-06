@@ -15,7 +15,7 @@
         android:ems="10"
         android:gravity="center"
         android:text="@string/list_of_notes"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

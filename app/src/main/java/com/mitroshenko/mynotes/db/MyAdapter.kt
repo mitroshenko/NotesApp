@@ -1,19 +1,32 @@
 package com.mitroshenko.mynotes.db
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mitroshenko.mynotes.EditActivity
 import com.mitroshenko.mynotes.R
 
-class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter <MyAdapter.MyHolder>() {
-    var listArray = listMain
+class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView.Adapter <MyAdapter.MyHolder>() {
+    val listArray = listMain
+    var context = contextM
 
-    class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
-        fun setData(title: String){
-            tvTitle.text = title
+    class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
+        val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
+        val context = contextV
+
+        fun setData(item: ListItem){
+            tvTitle.text = item.title
+            itemView.setOnClickListener(){
+                val intent = Intent(context, EditActivity::class.java).apply {
+                    putExtra(MyIntentConstants.I_TITLE_KEY, item.title)
+                    putExtra(MyIntentConstants.I_DESC_KEY, item.desc)
+                }
+                context.startActivity(intent)
+            }
 
         }
 
@@ -21,7 +34,7 @@ class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter <MyAdapter.M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return MyHolder(inflater.inflate(R.layout.rc_item, parent, false))
+        return MyHolder(inflater.inflate(R.layout.rc_item, parent, false), context)
     }
 
     override fun getItemCount(): Int {
@@ -31,10 +44,17 @@ class MyAdapter(listMain: ArrayList<String>) : RecyclerView.Adapter <MyAdapter.M
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.setData(listArray.get(position))
     }
-    fun updateAdapter(listItems: List<String>){
+    fun updateAdapter(listItems: List<ListItem>){
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged()
+    }
+    fun removeItem(pos: Int, dbManager: MyDbManager){
+        dbManager.removeItemFromDb(listArray[pos].id.toString())
+        listArray.removeAt(pos)
+        notifyItemRangeChanged(0, listArray.size)
+        notifyItemRemoved(pos)
+
     }
 
 }

@@ -10,7 +10,7 @@ object MyDbNameClass: BaseColumns {
     const val COLUMN_NAME_CONTENT = "content"
 
     //Версия и название таблицы2
-    const val DATABASE_VERSION = 1
+    const val DATABASE_VERSION = 2
     const val DATABASE_NAME = "MyFirstDb.db"
 
     //Создание таблицы3
