@@ -16,14 +16,17 @@ class MyAdapter(listMain: ArrayList<ListItem>, contextM: Context) : RecyclerView
 
     class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
+        val tvTime = itemView.findViewById<TextView>(R.id.tvTime)
         val context = contextV
 
         fun setData(item: ListItem){
             tvTitle.text = item.title
+            tvTime.text = item.time
             itemView.setOnClickListener(){
                 val intent = Intent(context, EditActivity::class.java).apply {
                     putExtra(MyIntentConstants.I_TITLE_KEY, item.title)
                     putExtra(MyIntentConstants.I_DESC_KEY, item.desc)
+                    putExtra(MyIntentConstants.I_ID_KEY, item.id)
                 }
                 context.startActivity(intent)
             }

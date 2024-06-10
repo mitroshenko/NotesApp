@@ -8,9 +8,18 @@ import android.widget.Button
 import android.widget.EditText
 import com.mitroshenko.mynotes.db.MyDbManager
 import com.mitroshenko.mynotes.db.MyIntentConstants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
 
 class EditActivity : AppCompatActivity() {
     val myDbManager = MyDbManager(this)
+    var id = 0
+    var isEditState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +45,16 @@ class EditActivity : AppCompatActivity() {
         val myTitle = edTitle.text.toString()
         val myDesc = edDesc.text.toString()
         if (myTitle != "" && myDesc != "") {
-            myDbManager.insertToDb(myTitle, myDesc)
-            finish()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                if (isEditState) {
+                    myDbManager.updateItem(myTitle, myDesc, id, getCurrentTime())
+                } else {
+                    myDbManager.insertToDb(myTitle, myDesc, getCurrentTime())
+                }
+                finish()
+            }
+
         }
 
     }
@@ -48,9 +65,16 @@ class EditActivity : AppCompatActivity() {
         val i = intent
         if (i != null) {
             if (i.getStringExtra(MyIntentConstants.I_TITLE_KEY) != null) {
+                isEditState = true
                 edTitle.setText(i.getStringExtra(MyIntentConstants.I_TITLE_KEY))
                 edDesc.setText(i.getStringExtra(MyIntentConstants.I_DESC_KEY))
+                id = i.getIntExtra(MyIntentConstants.I_ID_KEY, 0)
             }
         }
+    }
+    private fun getCurrentTime():String{
+        val time = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd.MM.yy kk:mm", Locale.getDefault())
+        return formatter.format(time)
     }
 }

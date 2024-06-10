@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyNotes"
         tools:targetApi="31">
         <activity
+            android:name=".db.StartActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditActivity"
             android:exported="false" />
         <activity

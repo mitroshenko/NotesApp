@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">MyNotes</string>
-    <string name="save">Save</string>
-    <string name="hello">Hello!</string>
-    <string name="yes">Yes</string>
-    <string name="textview">No elements</string>
-    <string name="savenote">Save</string>
-    <string name="list_of_notes">List of notes</string>
-    <string name="description">Description:</string>
+    <string name="app_name">Мои заметки</string>
+    <string name="save">Сохранить</string>
+    <string name="hello">Привет!</string>
+    <string name="yes">Да</string>
+    <string name="textview">Нет элементов</string>
+    <string name="savenote">Сохранить</string>
+    <string name="list_of_notes">Мои заметки</string>
+    <string name="description">Описание:</string>
+    <string name="hiding">Заголовок:</string>
 </resources>
