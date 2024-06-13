@@ -20,6 +20,6 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        handler.postDelayed(runnable, 4000)
+        handler.postDelayed(runnable, 2000)
     }
 }
