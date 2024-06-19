@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
-    tools:context=".db.StartActivity">
+    tools:context=".StartActivity">
 
     <TextView
         android:id="@+id/tvStart"

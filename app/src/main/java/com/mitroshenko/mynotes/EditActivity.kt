@@ -1,11 +1,15 @@
 package com.mitroshenko.mynotes
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.Gravity.CENTER
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.mitroshenko.mynotes.db.MyDbManager
 import com.mitroshenko.mynotes.db.MyIntentConstants
 import kotlinx.coroutines.CoroutineScope
@@ -55,8 +59,15 @@ class EditActivity : AppCompatActivity() {
                 finish()
             }
 
+        } else {
+            if ( myTitle.isEmpty() || myDesc.isEmpty()) {
+                val toast = Toast.makeText(this, "Необходимо заполнить все поля", Toast.LENGTH_SHORT)
+                val toastContainer = toast.view
+                toast.setGravity(Gravity.CENTER,0,0)
+                toastContainer?.setBackgroundColor(Color.TRANSPARENT)
+                toast.show()
+            }
         }
-
     }
 
     fun getMyIntents() {

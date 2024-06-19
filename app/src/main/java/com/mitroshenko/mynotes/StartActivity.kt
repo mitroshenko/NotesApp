@@ -1,11 +1,9 @@
-package com.mitroshenko.mynotes.db
+package com.mitroshenko.mynotes
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.mitroshenko.mynotes.MainActivity
-import com.mitroshenko.mynotes.R
 
 
 class StartActivity : AppCompatActivity() {
@@ -14,6 +12,7 @@ class StartActivity : AppCompatActivity() {
     private val runnable = Runnable {
         val i = Intent(this@StartActivity, MainActivity::class.java)
         startActivity(i)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
