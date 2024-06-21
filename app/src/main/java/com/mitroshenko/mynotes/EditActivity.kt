@@ -66,6 +66,7 @@ class EditActivity : AppCompatActivity() {
                 toast.setGravity(Gravity.CENTER,0,0)
                 toastContainer?.setBackgroundColor(Color.TRANSPARENT)
                 toast.show()
+                //Не работает
             }
         }
     }
