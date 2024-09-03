@@ -10,4 +10,5 @@
     <string name="hiding">Заголовок:</string>
     <string name="startText">Привет, моя рыбка!</string>
     <string name="empty">Пусто</string>
+    <string name="newNote">Новая заметка</string>
 </resources>

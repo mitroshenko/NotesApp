@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:drawable/editbox_background"
-    android:backgroundTint="@color/back_gd"
+    android:background="#2E2E2E"
+    android:backgroundTint="#2E2E2E"
     tools:context=".EditActivity">
 
     <EditText
@@ -13,14 +13,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:background="@android:drawable/editbox_background"
+        android:backgroundTint="#C5C5C5"
         android:ems="10"
         android:fontFamily="@font/kurale"
         android:hint="@string/hiding"
         android:inputType="text"
         android:padding="10dp"
+        android:textColorHint="#535252"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background"
+        android:backgroundTint="#C5C5C5"
         android:ems="10"
         android:fontFamily="@font/kurale"
         android:gravity="top"
@@ -39,6 +42,7 @@
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:scrollbars="vertical"
+        android:textColorHint="#535252"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/edTitle"
         app:layout_constraintStart_toStartOf="@+id/edTitle"
@@ -50,10 +54,27 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="#A8D377"
+        android:backgroundTint="#FFEB3B"
         android:fontFamily="@font/kurale"
         android:onClick="onClickSave"
         android:text="@string/savenote"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:text="@string/newNote"
+        android:textColor="#FFEB3B"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/edTitle"
+        app:layout_constraintEnd_toEndOf="@+id/edTitle"
+        app:layout_constraintStart_toStartOf="@+id/edTitle"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

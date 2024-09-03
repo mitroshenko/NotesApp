@@ -19,6 +19,7 @@
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/kurale"
         android:text="TextView"
+        android:maxLength="25"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

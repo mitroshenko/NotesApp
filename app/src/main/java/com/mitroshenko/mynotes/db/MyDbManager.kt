@@ -7,17 +7,12 @@ import android.provider.BaseColumns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-//Создание класса для записи в БД
 class MyDbManager(context: Context) {
     val myDbHelper = MyDbHelper(context)
     var db: SQLiteDatabase? = null
-
-    //открыть БД
-    fun openDb() {
+       fun openDb() {
         db = myDbHelper.writableDatabase
     }
-
-    //Функция для записи
     suspend fun insertToDb(title: String, content: String, time: String) = withContext(Dispatchers.IO) {
         val values = ContentValues().apply {
             put(MyDbNameClass.COLUMN_NAME_TITLE, title)
@@ -33,26 +28,17 @@ class MyDbManager(context: Context) {
             put(MyDbNameClass.COLUMN_NAME_TITLE, title)
             put(MyDbNameClass.COLUMN_NAME_CONTENT, content)
             put(MyDbNameClass.COLUMN_NAME_TIME, time)
-
-
         }
         db?.update(MyDbNameClass.TABLE_NAME, values, selection, null)
     }
-
     fun removeItemFromDb(id: String) {
         val selection = BaseColumns._ID + "=$id"
         db?.delete(MyDbNameClass.TABLE_NAME, selection, null)
     }
-
     suspend fun readDbData(searchText : String): ArrayList<ListItem> = withContext(Dispatchers.IO) {
         val dataList = ArrayList<ListItem>()
         val selection = "${MyDbNameClass.COLUMN_NAME_TITLE} like ?"
-
-        //Заполняем данными
-        //Считываем с помощью курсора, помещаем данные в курсор
         val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, selection, arrayOf("%$searchText%"), null, null, null)
-
-
         while (cursor?.moveToNext()!!) {
             val dataTitle = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
             val dataContent =
@@ -71,9 +57,7 @@ class MyDbManager(context: Context) {
         cursor.close()
         return@withContext dataList
     }
-
     fun closeDb() {
         myDbHelper.close()
     }
-
 }

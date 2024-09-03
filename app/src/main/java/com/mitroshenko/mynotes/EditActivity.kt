@@ -1,13 +1,11 @@
 package com.mitroshenko.mynotes
 
-import android.content.Intent
+
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.view.Gravity.CENTER
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.mitroshenko.mynotes.db.MyDbManager
@@ -16,7 +14,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
@@ -24,32 +21,25 @@ class EditActivity : AppCompatActivity() {
     val myDbManager = MyDbManager(this)
     var id = 0
     var isEditState = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_activity)
         getMyIntents()
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
         myDbManager.closeDb()
     }
-
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
     }
-
     fun onClickSave(view: View) {
         val edTitle = findViewById<EditText>(R.id.edTitle)
         val edDesc = findViewById<EditText>(R.id.edDesc)
-
         val myTitle = edTitle.text.toString()
         val myDesc = edDesc.text.toString()
         if (myTitle != "" && myDesc != "") {
-
             CoroutineScope(Dispatchers.Main).launch {
                 if (isEditState) {
                     myDbManager.updateItem(myTitle, myDesc, id, getCurrentTime())
@@ -58,7 +48,6 @@ class EditActivity : AppCompatActivity() {
                 }
                 finish()
             }
-
         } else {
             if ( myTitle.isEmpty() || myDesc.isEmpty()) {
                 val toast = Toast.makeText(this, "Необходимо заполнить все поля", Toast.LENGTH_SHORT)
@@ -66,11 +55,9 @@ class EditActivity : AppCompatActivity() {
                 toast.setGravity(Gravity.CENTER,0,0)
                 toastContainer?.setBackgroundColor(Color.TRANSPARENT)
                 toast.show()
-                //Не работает
             }
         }
     }
-
     fun getMyIntents() {
         val edTitle = findViewById<EditText>(R.id.edTitle)
         val edDesc = findViewById<EditText>(R.id.edDesc)
